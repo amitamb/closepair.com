@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ClosePair – AI Consulting & Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="ClosePair is an IT company focused on AI consulting and building practical AI products."
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.15);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.6);
+      --shadow-subtle: 0 10px 25px rgba(15, 23, 42, 0.5);
+      --transition-fast: 160ms ease-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 52%, #020617 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 30%;
+      background: radial-gradient(circle at 30% 20%, #a5b4fc, #4f46e5 40%, #111827 85%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-tagline-short {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #818cf8, #22d3ee);
+      transition: width var(--transition-fast);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* MAIN / HERO */
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, #a5b4fc, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      max-width: 34rem;
+      font-size: 15px;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, #6366f1, #22c1c3);
+      border: none;
+      cursor: pointer;
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-soft);
+      transform: translateY(0);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        opacity var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.8);
+      opacity: 0.97;
+    }
+
+    .cta-primary span.icon {
+      font-size: 16px;
+      transform: translateY(0.5px);
+    }
+
+    .cta-secondary {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cta-secondary strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Right hero card */
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0% 0%, rgba(129, 140, 248, 0.2) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.18) 0, transparent 50%),
+        var(--bg-alt);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: calc(var(--radius-lg) - 1px);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-card-header span.label {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 480px) {
+      .hero-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .metric {
+      padding: 9px 9px 8px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.15), transparent 50%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .metric span.tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #a5b4fc;
+    }
+
+    /* SECTIONS */
+    section {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    section + section {
+      margin-top: 14px;
+    }
+
+    section h2 {
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .section-body {
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 720px) {
+      .columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    ul.clean li {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    ul.clean li span.bullet {
+      font-size: 14px;
+      line-height: 1.3;
+      opacity: 0.85;
+    }
+
+    .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 700px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .contact-list label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-card {
+      padding: 10px 11px;
+      border-radius: 12px;
+      border: 1px dashed rgba(148, 163, 184, 0.55);
+      background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.16), transparent 55%),
+        rgba(15, 23, 42, 0.9);
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-top: 4px;
+    }
+
+    .contact-card small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .contact-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-cta .cta-primary {
+      align-self: flex-start;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    footer span {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="brand">
+      <div class="brand-mark">C</div>
+      <div class="brand-text">
+        <div class="brand-name">ClosePair</div>
+        <div class="brand-tagline-short">AI consulting & products</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">What we do</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <span class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          ClosePair · Pune, India
+        </span>
+        <h1 id="hero-heading">
+          Practical <span>AI partners</span> for your next product.
+        </h1>
+        <p class="hero-subtitle">
+          ClosePair is an IT company focused on <strong>AI consulting</strong> and
+          building <strong>real-world AI products</strong>. We help teams go from
+          “this could be AI-powered” to something people actually use.
+        </p>
+
+        <div class="pill-row" aria-hidden="true">
+          <span class="pill">AI strategy & architecture</span>
+          <span class="pill">Prototypes → production</span>
+          <span class="pill">ML, LLMs & automation</span>
+        </div>
+
+        <div class="hero-actions">
+          <a
+            class="cta-primary"
+            href="mailto:hello@closepair.com?subject=Hello%20ClosePair"
+          >
+            <span class="icon">✉️</span>
+            <span>Get in touch</span>
+          </a>
+          <div class="cta-secondary">
+            Or email us anytime at <strong>hello@closepair.com</strong>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="What ClosePair focuses on">
+        <div class="hero-card-header">
+          <span>How we like to work</span>
+          <span class="label">AI, but practical</span>
+        </div>
+        <div class="hero-card-body">
+          <p>
+            We keep things simple: understand your problem, prototype quickly,
+            then ship something reliable. No overcomplicated buzzwords, just
+            useful software.
+          </p>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>Consult</strong>
+              <span>Clarify what’s worth building with AI and what isn’t.</span>
+              <span class="tag">Discover</span>
+            </div>
+            <div class="metric">
+              <strong>Build</strong>
+              <span>From proof of concept to production-ready products.</span>
+              <span class="tag">Ship</span>
+            </div>
+            <div class="metric">
+              <strong>Improve</strong>
+              <span>Iterate based on real usage, not guesses.</span>
+              <span class="tag">Evolve</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About ClosePair</h2>
+      <div class="section-body">
+        <p>
+          ClosePair is an IT company with a strong focus on artificial
+          intelligence. Our work sits at the intersection of
+          <strong>software engineering</strong> and
+          <strong>applied machine learning</strong>.
+        </p>
+        <p class="muted">
+          In simple terms: we like building things that make day-to-day work
+          less tedious, smarter, and more enjoyable.
+        </p>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section id="work" aria-labelledby="work-heading">
+      <h2 id="work-heading">What we do</h2>
+      <div class="section-body columns">
+        <div>
+          <p><strong>AI consulting</strong> for teams that want to use AI without the hype.</p>
+          <ul class="clean">
+            <li>
+              <span class="bullet">▸</span>
+              <span>Clarify where AI can actually help in your product or workflow.</span>
+            </li>
+            <li>
+              <span class="bullet">▸</span>
+              <span>Help choose the right tools, models, and overall architecture.</span>
+            </li>
+            <li>
+              <span class="bullet">▸</span>
+              <span>Create small, testable experiments instead of big risky bets.</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>AI products</strong> built and maintained by ClosePair.</p>
+          <ul class="clean">
+            <li>
+              <span class="bullet">▸</span>
+              <span>Internal tools and platforms that we run under other domains.</span>
+            </li>
+            <li>
+              <span class="bullet">▸</span>
+              <span>New products we’re experimenting with and gradually rolling out.</span>
+            </li>
+            <li>
+              <span class="bullet">▸</span>
+              <span>Spaces where future users and customers might discover ClosePair.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted">
+        If you’re here because you found one of our products and want to see who is
+        behind it — this is us.
+      </p>
+      <div class="tag-grid" aria-hidden="true">
+        <span class="tag">Applied AI</span>
+        <span class="tag">Product thinking</span>
+        <span class="tag">Developer-friendly</span>
+        <span class="tag">Long-term partnerships</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <div class="section-body contact-grid">
+        <div>
+          <ul class="contact-list">
+            <li>
+              <label>Email</label>
+              <div class="contact-card">
+                <a href="mailto:hello@closepair.com">hello@closepair.com</a>
+                <small>
+                  The easiest way to reach us. Tell us briefly who you are, what
+                  you’re working on, and how you think AI might help.
+                </small>
+              </div>
+            </li>
+            <li>
+              <label>Location</label>
+              <div class="contact-card">
+                Pune, India
+                <small>
+                  Working with teams remotely and across time zones.
+                </small>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-cta">
+          <p>
+            Have a product idea, an internal workflow you’d like to automate, or a
+            product of ours you’re already using?
+          </p>
+          <p>
+            Click the button below and we’ll start with a simple email conversation.
+          </p>
+          <a
+            class="cta-primary"
+            href="mailto:hello@closepair.com?subject=Get%20in%20touch%20with%20ClosePair"
+          >
+            <span class="icon">📨</span>
+            <span>Get in touch</span>
+          </a>
+          <p class="muted">
+            No forms. No spam. Just an email to a real person at ClosePair.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> ClosePair. All rights reserved.</span>
+    <span>Made in Pune, India.</span>
+  </footer>
+</div>
+
+<script>
+  // Keep year current without needing manual edits.
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
